@@ -1,0 +1,23 @@
+---
+rdf_prefix_path: "_data/prefixes.sparql"
+---
+
+Class {{ page.rdf }}
+
+<h3>Relations</h3>
+{% assign query = 'SELECT ?p ?o WHERE { ?resourceUri ?p ?o }' %}
+{% assign resultset = page.rdf | sparql_query: query %}
+<table>
+{% for result in resultset %}
+  <tr><td>{{ result.p }}</td><td>{{ result.o }}</td></tr>
+  {% endfor %}
+</table>
+<h3>Inverse Relations</h3>
+{% assign query = 'SELECT ?s ?p WHERE { ?s ?p ?resourceUri }' %}
+{% assign resultset = page.rdf | sparql_query: query %}
+<table>
+{% for result in resultset %}
+  <tr><td>{{ result.s }}</td><td>{{ result.p }}</td></tr>
+  {% endfor %}
+</table>
+

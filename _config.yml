@@ -1,0 +1,14 @@
+title: Jekyll SNIK
+
+baseurl: "" 
+url: "" 
+
+plugins:
+  - jekyll-rdf
+
+jekyll_rdf:
+    path: "_data/metabb.nt"
+    default_template: "default"
+    restriction: "SELECT ?resourceUri WHERE { ?resourceUri ?p ?o . FILTER regex(str(?resourceUri), 'http://www.snik.eu/ontology/')  }"
+    class_template_mappings:
+        "http://www.w3.org/2002/07/owl#class": "class"
